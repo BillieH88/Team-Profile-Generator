@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Profile Generator</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    header {
+        height: 100px;
+        background-color: tomato;
+        color: #fff;
+        text-align: center;
+    }
+    
+    header h1 {
+        line-height: 100px;
+    }
+    
+    main {
+        width: 80%;
+        margin: 10px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    
+    .card {
+        width: 300px;
+        min-height: 210px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(120, 120, 120, .3);
+        overflow: hidden;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    
+    .top {
+        height: 80px;
+        background-color: rgb(29, 150, 190);
+        overflow: hidden;
+        color: #fff;
+        text-align: center;
+    }
+    
+    .top h2 {
+        padding-top: 15px;
+        text-transform: uppercase;
+        font-weight: 100;
+        letter-spacing: 3px;
+    }
+    
+    .top p {
+        font-style: italic;
+    }
+    
+    .body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-color: aliceblue;
+    }
+    
+    .body div {
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid lightgrey;
+        border-radius: 2px;
+        width: 250px;
+    }
+</style>
+
+<body>
+    <header>
+        <h1>My Team</h1>
+    </header>
+
+    <main>
+        <% if(data.length > 0){ %>
+            <% for (let d of data) { %>
+                <% if(d.getRole() === "Manager"){ %>
+                    <div class="card">
+                        <div class="top">
+                            <h2>
+                                <%= d.getName() %>
+                            </h2>
+                            <p>
+                                <%= d.getRole() %>
+                            </p>
+                        </div>
+                        <div class="body">
+                            <div class="id">ID:
+                                <%= d.getId() %>
+                            </div>
+                            <div>Email:
+                                <a href="mailto:<%= d.getEmail() %>">
+                                    <%= d.getEmail() %>
+                                </a>
+                            </div>
+                            <div>Office No.
+                                <%= d.getOffice() %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }else if(d.getRole() === "Engineer"){ %>
+                        <div class="card">
+                            <div class="top">
+                                <h2>
+                                    <%= d.getName() %>
+                                </h2>
+                                <p>
+                                    <%= d.getRole() %>
+                                </p>
+                            </div>
+                            <div class="body">
+                                <div>ID:
+                                    <%= d.getId() %>
+                                </div>
+                                <div>Email:
+                                    <a href="mailto:">
+                                        <%= d.getEmail() %>
+                                    </a>
+                                </div>
+                                <div>Github:
+                                    <a href="https://github.com/<%= d.getGithub() %>" target="_blank" rel="noopener noreferrer">
+                                        <%= d.getGithub() %>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% }else{ %>
+                            <div class="card">
+                                <div class="top">
+                                    <h2>
+                                        <%= d.getName() %>
+                                    </h2>
+                                    <p>
+                                        <%= d.getRole() %>
+                                    </p>
+                                </div>
+                                <div class="body">
+                                    <div>ID:
+                                        <%= d.getId() %>
+                                    </div>
+                                    <div>Email:
+                                        <a href="mailto:<%=d.getEmail()%>">
+                                            <%= d.getEmail() %>
+                                        </a>
+                                    </div>
+                                    <div>School:
+                                        <%= d.getSchool() %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% } %>
+    </main>
+</body>
+
+</html>
